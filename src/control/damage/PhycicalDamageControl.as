@@ -34,7 +34,7 @@ public class PhycicalDamageControl extends BaseDamageSort{
             trace("闪避成功");
             return damageNum;
         }
-        damageNum = (getPhyical(attackAttribute) -getPhyicalDefense(enemyAttribute))*5;
+        damageNum = (getPhyical(attackAttribute) -getPhyicalDefense(enemyAttribute))*2;
         return damageNum;
     }
     //

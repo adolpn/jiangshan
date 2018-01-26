@@ -24,7 +24,7 @@ public class MagicDamageControl extends BaseDamageSort{
     }
     override public function damageSort(attackHero:Hero,enemyHero:Hero):int
     {
-        trace("魔法攻击");
+        trace("魔法攻击........");
         var damageNum:int =0;//伤害数量
         var attackAttribute:BaseAttribute =attackHero.getAttribute;
         var enemyAttribute:BaseAttribute =enemyHero.getAttribute;
@@ -34,7 +34,7 @@ public class MagicDamageControl extends BaseDamageSort{
             trace("识破成功");
             return damageNum;
         }
-        damageNum = (getPhyical(attackAttribute) -getPhyicalDefense(enemyAttribute))*5;
+        damageNum = sortMagicNum(attackAttribute,enemyAttribute);
         return damageNum;
     }
     //
@@ -49,6 +49,7 @@ public class MagicDamageControl extends BaseDamageSort{
             return false;
         }
     }
+
     //获取公里攻击力
     private function getPhyical(attribe:BaseAttribute):Number
     {
@@ -65,6 +66,11 @@ public class MagicDamageControl extends BaseDamageSort{
     {
         var num:Number =attribe.getMagicNum;
         return num;
+    }
+    //计算魔法伤害量
+    private function sortMagicNum(attackAttribute:BaseAttribute,enemyAttribute:BaseAttribute):Number
+    {
+        return (getMagic(attackAttribute) -getMagicDefense(enemyAttribute))*5;
     }
     private function getMagicDefense(attribe:BaseAttribute):Number
     {

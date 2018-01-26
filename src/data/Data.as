@@ -19,7 +19,10 @@ public class Data {
         addArm(2,{"campid":2,"type":"damage","index":"gongjianshou","name":"gongjianshou","url":"images/hero/1.png","id":0});
 
         //特殊兵
-        addArm(3,{"campid":3,"type":"damage","index":"gongjianshou","name":"gongjianshou","url":"images/hero/1.png","id":0});
+        addArm(3,{"campid":3,"type":"damage","index":"gongjianshou1","name":"gongjianshou","url":"images/hero/1.png","id":0});
+        addArm(3,{"campid":3,"type":"status","index":"gongjianshou2","name":"gongjianshou","url":"images/hero/1.png","id":0});
+        addArm(3,{"campid":3,"type":"target","index":"gongjianshou3","name":"gongjianshou","url":"images/hero/1.png","id":0});
+
     }
     public static function addArm(id:int,obj:Object):void
     {

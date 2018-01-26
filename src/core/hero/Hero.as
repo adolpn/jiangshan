@@ -5,6 +5,7 @@ package core.hero {
 
 
 import com.bit101.components.InputText;
+import com.bit101.components.Text;
 
 //import core.arm.Arms;
 
@@ -30,6 +31,8 @@ public class Hero extends Sprite{
     private var _heroURL:String;
     private var _heroText:TextField;
     private var _lifeText:TextField;
+    private var _angerPointText:TextField;
+    private var _msgText:TextField;
     private var _heroName:String;
     protected var _id:int =0;//代表在战场的站位
     protected var brithPlace:int = 0;       //出生地  0蜀1吴2魏3群雄
@@ -68,19 +71,37 @@ public class Hero extends Sprite{
 
         _heroText = new TextField();
         _heroText.mouseEnabled = false;
-        _heroText.width = _w;
+        _heroText.width = _w/2-5;
        // _heroText.height =10;
         _heroText.text =_heroName;
         addChild(_heroText);
 
+        _msgText = new TextField();
+        _msgText.mouseEnabled = false;
+        //_msgText.width = _w/2-5;
+        _msgText.x = _w/2 -15;
+        _msgText.text ="";
+        addChild(_msgText);
+
+
         _lifeText =new TextField();
         _lifeText.mouseEnabled =false;
-        _lifeText.width = _w;
+        _lifeText.width = _w/2 -5;
         // _heroText.height =10;
         _lifeText.y = 18;
         _lifeText.text = String(_attribute.life);
         trace(_lifeText.text);
         addChild(_lifeText);
+
+        _angerPointText =new TextField();
+        _angerPointText.mouseEnabled =false;
+        _angerPointText.width = _w/2 -5;
+        _angerPointText.x = _w/2 +5;
+        _angerPointText.y = 18;
+        _angerPointText.text = String("怒气:"+_attribute.angerPoint);
+        trace(_angerPointText.text);
+        addChild(_angerPointText);
+
 
         this.addEventListener(MouseEvent.CLICK,thisClickHandle);
         this.buttonMode = true;
@@ -98,6 +119,7 @@ public class Hero extends Sprite{
     //攻击
     public function attack():void
     {
+        _msgText.text ="";
         if(_attribute.angerPoint <3)
         {
             //物理攻击
@@ -109,6 +131,7 @@ public class Hero extends Sprite{
             _actionAttribute.attackType =1;
             _actionAttribute.attackTargetTypeName =ActionAttribute.attackTargetTypeData[1];//单一目标
             _attribute.angerPoint =0;
+            _angerPointText.text = String("怒气:"+_attribute.angerPoint);
         }
         _actionAttribute.campType =_campType;
         var attackEvent:AttackEvent = new AttackEvent(this,AttackEvent.Attacked_Event);
@@ -145,11 +168,17 @@ public class Hero extends Sprite{
         _resultData = resultData;
         if(_resultData.damageNum >0)
         {
-            _attribute.angerPoint++;
-            trace("怒气加一");
+            if(_actionAttribute.attackType ==0)
+            {
+                _attribute.angerPoint++;
+                trace("怒气加一");
+            }
+            _msgText.text ="伤害："+_resultData.damageNum;
+            _angerPointText.text = String("怒气:"+_attribute.angerPoint);
         }else
         {
             trace("攻击无效....");
+            _msgText.text ="无效...";
         }
     }
     //被攻击处理
@@ -189,7 +218,7 @@ public class Hero extends Sprite{
     //
     public function set myname(id:int):void
     {
-        trace("jjjj")
+        //trace("jjjj");
     }
 
     //设置兵种数据
