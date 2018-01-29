@@ -3,12 +3,6 @@ package core.hero {
  * 英雄基类
  */
 
-
-import com.bit101.components.InputText;
-import com.bit101.components.Text;
-
-//import core.arm.Arms;
-
 import data.ActionAttribute;
 import data.Data;
 import flash.display.Sprite;
@@ -38,6 +32,8 @@ public class Hero extends Sprite{
     protected var brithPlace:int = 0;       //出生地  0蜀1吴2魏3群雄
     protected var _attribute:BaseAttribute;
     protected var _actionAttribute:ActionAttribute;
+    protected var _skill:SkillBase;//英雄技能
+    protected var _awakeSill:AwakenSkillBase;//觉醒技能
     private var _campType:int = 0;//英雄阵营
     protected var _resultData:Object;//攻击回馈属性
     public function Hero(attribute:BaseAttribute,armData:Object, _type:int=0) {
@@ -136,7 +132,6 @@ public class Hero extends Sprite{
         _actionAttribute.campType =_campType;
         var attackEvent:AttackEvent = new AttackEvent(this,AttackEvent.Attacked_Event);
         AttackEventControl.getInstance().dispatchEvent(attackEvent);
-
     }
     //被攻击
     public function BeAttacked():void
