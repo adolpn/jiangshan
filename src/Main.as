@@ -23,7 +23,7 @@ public class Main extends Sprite{
     //
     private function addtoStage(e:Event):void
     {
-        trace("111");
+        trace("1122");
         this.removeEventListener(Event.ADDED_TO_STAGE,addtoStage);
         init();
     }
